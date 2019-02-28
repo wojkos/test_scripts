@@ -15,10 +15,20 @@ End With
 
 dateNow = CDate(Now())	
 isoDateStr = CStr(DateDiff("s", "01/01/1970 00:00:00", dateNow))
-objWorkbook.SaveAs "C:\Users\Asus\Desktop\Nowyfolder\" & isoDateStr & ".xlsx" 
+Dim filePath
+filePath = "C:\Users\Asus\Desktop\Nowyfolder\" & isoDateStr & ".xlsx" 
+objWorkbook.SaveAs filePath
 
 objWorkbook.Close 
 objExcel.Quit
 
-Set objExcel = Nothing
 Set objWorkbook = Nothing
+
+Set objWorkbook = objExcel.Workbooks.Open(filePath)
+objWorkbook.WorkSheets(1).Activate
+objWorkbook.WorkSheets(1).Cells(1, 1).Value = "after save value"
+objExcel.ActiveWorkbook.Save 
+objExcel.ActiveWorkbook.Close
+objExcel.Application.Quit
+Set objExcel = Nothing
+WScript.Quit
