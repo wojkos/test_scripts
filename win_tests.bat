@@ -1,6 +1,6 @@
 @echo off
-SET testDir="C:\Users\Asus\Desktop\Nowyfolder\test"
-SET noMountDir="C:\Users\Asus\Desktop"
+SET testDir="M:\tests"
+SET noMountDir="C:\Users\MooseFS.WINMFS\Desktop"
 if not exist %testDir% mkdir %testDir%
 
 if not exist "%testDir%\test_A" mkdir %testDir%\test_A
