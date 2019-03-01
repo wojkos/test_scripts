@@ -16,7 +16,7 @@ End With
 dateNow = CDate(Now())	
 isoDateStr = CStr(DateDiff("s", "01/01/1970 00:00:00", dateNow))
 Dim filePath
-filePath = "C:\Users\Asus\Desktop\Nowyfolder\" & isoDateStr & ".xlsx" 
+filePath = "" & isoDateStr & ".xlsx" 
 objWorkbook.SaveAs filePath
 
 objWorkbook.Close 
@@ -25,10 +25,14 @@ objExcel.Quit
 Set objWorkbook = Nothing
 
 Set objWorkbook = objExcel.Workbooks.Open(filePath)
-objWorkbook.WorkSheets(1).Activate
-objWorkbook.WorkSheets(1).Cells(1, 1).Value = "after save value"
+objWorkbook.WorkSheets(3).Activate
+objWorkbook.WorkSheets(3).Cells(1, 1).Value = "after save value"
 objExcel.ActiveWorkbook.Save 
 objExcel.ActiveWorkbook.Close
 objExcel.Application.Quit
+
+Set objWorkSheet = Nothing
+Set objWorkSheet1 = Nothing
+Set objWorkbook = Nothing
 Set objExcel = Nothing
 WScript.Quit
