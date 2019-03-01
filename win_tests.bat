@@ -71,4 +71,21 @@ IF %linesCount% NEQ 3 EXIT
 echo "TEST 4 FINISH"
 @echo off
 
-RMDIR %testDir% /s /q
+if not exist "%testDir%\test_G" mkdir %testDir%\test_G
+for /l %%a in (1 1 100) do fsutil file createnew "%testDir%\test_G\blank_new_file%%a.txt" 1200
+mkdir %testDir%\test_G\A
+for /l %%a in (1 1 20) do fsutil file createnew "%testDir%\test_G\A\ablank_new_file%%a.txt" 1200
+mkdir %testDir%\test_G\B
+move %testDir%\test_G\blank_new_file*2.txt %testDir%\test_G\B
+mkdir %testDir%\test_G\C
+move %testDir%\test_G\blank_new_file*3.txt %testDir%\test_G\B
+rmdir %testDir%\test_G\A /s /q
+move %testDir%\test_G\B %testDir%\test_G\C
+rmdir %testDir%\test_G\C /s /q
+type %filename% | find /C /V "" > tmp
+
+@echo on
+echo "TEST 5 FINISH"
+@echo off
+
+rmdir %testDir% /s /q
